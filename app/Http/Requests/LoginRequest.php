@@ -13,12 +13,14 @@ class LoginRequest extends FormRequest
     //para que se detenga al primer error de valicacion poner true
     protected $stopOnFirstFailure = true;
 
+    // comprobar si el usuario tiene autorizacion
     public function authorize()
     {
         return true;
     }
 
 
+    //reglas de validacion
     public function rules()
     {
         return [
@@ -27,6 +29,23 @@ class LoginRequest extends FormRequest
         ];
     }
 
+    // modificar el nombre del campo que muestra en el error
+    public function attributes()
+    {
+        return [
+            'email' => 'Correo Electronico',
+        ];
+    }
+
+    //modificar el mensaje de error para cada caso
+    public function messages()
+    {
+        return [
+            'email.required' => 'Correo Electronico requerido',
+        ];
+    }
+
+    //devolver si hay error de validacion
     protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
     {
         $errors = $validator->errors()->first();
