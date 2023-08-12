@@ -25,18 +25,22 @@ class DeleteController extends Controller
                 if (Storage::delete($file_path)) {
                     // Imagen eliminada exitosamente
                 } else {
-                    return response()->json(['message' => 'Error al eliminar la imagen'], 500);
+                    return response()->json(['message' => 'Error al eliminar la imagen',
+                                             'type'  => 'warning'
+                    ]);
                 }
             } else {
-                return response()->json(['message' => 'La imagen no existe'], 404);
+                return response()->json(['message' => 'La imagen no existe',
+                                         'type'  => 'warning'
+                ]);
             }
             $camara->delete();
             return response()->json(['type' => 'success', 
-            'message' => 'Camara eliminada exitosamente',
-           ]);
+                                     'message' => 'Camara eliminada exitosamente',
+            ]);
         } else {
             return response()->json(['type' => 'error', 
-            'message' => 'Camara no encontrada',
+                                     'message' => 'Camara no encontrada',
            ]);
         }
 
