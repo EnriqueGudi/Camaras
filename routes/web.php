@@ -2,14 +2,12 @@
 
 use App\Http\Controllers\InsertController;
 use App\Http\Controllers\DeleteController;
+use App\Http\Controllers\CamaraController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ConfirmacionController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Models\cvv_marca;
-use App\Models\cvv_modelo;
-use App\Models\cvv_camara;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,23 +26,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('welcome');
     })->name('index');
 
-    Route::get('/camaras', function () {
-        // Consultas
-        $marcas = cvv_marca::all();
-        $modelos = cvv_modelo::all();
-        $camaras = cvv_camara::all();
-        
-        // Codificación para no mostrar los valores
-        $marcasEncoded = json_encode($marcas);
-        $modelosEncoded = json_encode($modelos);
-        $camarasEncoded = json_encode($camaras->load('modelo.marca'));
-        
-        return view('camaras', [
-            'marcas' => $marcasEncoded,
-            'modelos' => $modelosEncoded,
-            'camaras' => $camarasEncoded,
-        ]);
-    });
+
+    Route::get('/camaras', [CamaraController::class, 'index']);
 
     Route::post('InsertController/camaras', [InsertController::class, 'setCamara'])->name('insert.camara');
     Route::post('DeleteController/camaras', [DeleteController::class, 'delCamara'])->name('delete.camara');
@@ -56,6 +39,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Ruta para cerrar sesión
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 });
 
 Route::middleware('guest')->group(function () {

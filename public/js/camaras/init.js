@@ -1,6 +1,7 @@
 $(function() {
 
     link_camaras.function.get_marcas();
+    link_camaras.function.get_areas();
     
 
     $("#foto_ubi_cam").on("change", function(){
@@ -15,6 +16,13 @@ $(function() {
             return modelo.id_marca == $("#cam_marca").val();
           });
         link_camaras.function.get_modelos(modelosFiltrados);
+    });
+
+    $("#area_ins").on("change", function(){
+        var sitiosFiltrados = sitios.filter(function(sitio) {
+            return sitio.id_area == $("#area_ins").val();
+          });
+        link_camaras.function.get_sitios(sitiosFiltrados);
     });
 
     $("#instalar_camara").on("click", function(){
@@ -44,14 +52,19 @@ $(function() {
     });
 
     $("#add_camera").on("click", function(){
+        $('#cam_modelo').html("<option value>Seleccione...</option>");
         $("#formucams").trigger("reset");
     });
 
     $("#delete_cam").on("click", function(){
         link_camaras.function.delete_camara();
     });
-
     
+
+    $("#instalar_camara").on("click", function(){
+        $('#sitio_ins').html("<option value>Seleccione...</option>");
+        $("#form_ins_cam").trigger("reset");
+    });
 
     $('#formucams').validate({
         rules: {

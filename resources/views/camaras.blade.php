@@ -3,6 +3,8 @@
     var marcas = JSON.parse(@json($marcas));
     var modelos = JSON.parse(@json($modelos));
     var camaras = JSON.parse(@json($camaras));
+    var areas = JSON.parse(@json($areas));
+    var sitios = JSON.parse(@json($sitios));
     var baseUrl = "{{ url('/') }}";
 </script>
 <div id="display_camaras" class="container" style="display:none">
@@ -162,7 +164,7 @@
                                             <div class='input-group' id='datetimepicker'>
                                                 <input type="text" name="fecha_ins" id="fecha_ins" class="form-control class_aux" readonly="">
                                                 <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
+                                                <span class="bi bi-calendar3"></span>
                                                 </span>
                                             </div>
                                     </div>

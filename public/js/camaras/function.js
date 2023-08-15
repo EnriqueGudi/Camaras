@@ -128,11 +128,9 @@ link_camaras.function = {
         });
         $('#cam_marca').html(template);
        
-
     },
 
     get_modelos:function(modelosfiltrados){
-
 
         let template ='<option value>Seleccione...</option>';
         modelosfiltrados.forEach(modelosfiltrados => {
@@ -143,7 +141,32 @@ link_camaras.function = {
         });
         $('#cam_modelo').html(template);
    
+    },
 
+    get_areas:function(){
+
+        let template ='<option value>Seleccione...</option>';
+        areas.forEach(area => {
+            template +=`
+            <option value="${area.id}">
+                ${area.nombre_area}
+            </option>`
+        });
+        $('#area_ins').html(template);
+       
+    },
+
+    get_sitios:function(sitiosfiltrados){
+
+        let template ='<option value>Seleccione...</option>';
+        sitiosfiltrados.forEach(sitiosfiltrados => {
+            template +=`
+            <option value="${sitiosfiltrados.id}">
+                ${sitiosfiltrados.nombre_sitio}
+            </option>`
+        });
+        $('#sitio_ins').html(template);
+   
     },
 
     modal_cam_per:function(){  

@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-class cvv_marca extends Model
+
+class area extends Model
 {
     use HasFactory;
-    public function modelos()
+    public function sitios()
     {
-        return $this->hasMany(cvv_modelo::class);
+        return $this->hasMany(sitio::class);
     }
 }
